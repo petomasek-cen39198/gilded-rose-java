@@ -24,10 +24,9 @@ class GildedRose {
                 item.quality = Math.min(item.quality + increment, QUALITY_GROWTH_THRESHOLD);
             } else if (item.name.equals("Aged Brie")) {
                 item.quality = Math.min(item.quality + 1, QUALITY_GROWTH_THRESHOLD);
-            } else {
+            } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 if (item.quality > QUALITY_DECREASE_THRESHOLD) {
-                    if (!item.name.equals("Sulfuras, Hand of Ragnaros"))
-                        item.quality--;
+                    item.quality--;
                 }
             }
 
