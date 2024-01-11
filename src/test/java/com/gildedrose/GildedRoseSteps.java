@@ -18,12 +18,12 @@ public class GildedRoseSteps {
         originalQuality = quality;
     }
 
-    @Given("^an? (.+) with quality (\\d+) to be sold by (\\d+) days$")
+    @Given("^an? (.+) with quality (\\d+) to be sold by (-?\\d+) days$")
     public void itemBeforeSellBy(String name, int quality, int sellIn) {
         initItem(name, sellIn, quality);
     }
 
-    @Given("^an? (.+) with quality (\\d+) overdue by (\\d+) days$")
+    @Given("^an? (.+) with quality (\\d+) overdue by (-?\\d+) days$")
     public void itemOverdue(String name, int quality, int overdue) {
         initItem(name, -overdue, quality);
     }
@@ -51,5 +51,15 @@ public class GildedRoseSteps {
     @Then("^the sell-by should be decreased by (\\d+)$")
     public void bellByShouldBeDecreasedBy(int decrease) {
         assertEquals(originalSellIn - decrease, app.items[0].sellIn);
+    }
+
+    @Then("^the quality should remain the same$")
+    public void qualityShouldRemainTheSame() {
+        assertEquals(originalQuality, app.items[0].quality);
+    }
+
+    @Then("^the sell-by date should remain the same$")
+    public void sellByShouldRemainTheSame() {
+        assertEquals(originalSellIn, app.items[0].sellIn);
     }
 }
