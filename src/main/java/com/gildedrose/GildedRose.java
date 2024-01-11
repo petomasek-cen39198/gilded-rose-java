@@ -1,6 +1,8 @@
 package com.gildedrose;
 
 class GildedRose {
+
+    final static int QUALITY_GROWTH_THRESHOLD = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -16,17 +18,17 @@ class GildedRose {
                         item.quality--;
                 }
             } else {
-                if (item.quality < 50) {
+                if (item.quality < QUALITY_GROWTH_THRESHOLD) {
                     item.quality++;
 
                     if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (item.sellIn < 11) {
-                            if (item.quality < 50)
+                            if (item.quality < QUALITY_GROWTH_THRESHOLD)
                                 item.quality++;
                         }
 
                         if (item.sellIn < 6) {
-                            if (item.quality < 50)
+                            if (item.quality < QUALITY_GROWTH_THRESHOLD)
                                 item.quality++;
                         }
                     }
@@ -44,7 +46,7 @@ class GildedRose {
                                 item.quality--;
                     } else
                         item.quality = 0;
-                } else if (item.quality < 50)
+                } else if (item.quality < QUALITY_GROWTH_THRESHOLD)
                     item.quality++;
             }
         }
