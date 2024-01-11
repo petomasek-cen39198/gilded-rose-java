@@ -12,7 +12,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            int adjustment;
+            int adjustment = 0;
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
 
                 if (item.sellIn < 6)
@@ -22,14 +22,16 @@ class GildedRose {
                 else
                     adjustment = 1;
 
-                item.quality = Math.min(item.quality + adjustment, QUALITY_GROWTH_THRESHOLD);
             } else if (item.name.equals("Aged Brie")) {
                 adjustment = 1;
-                item.quality = Math.min(item.quality + adjustment, QUALITY_GROWTH_THRESHOLD);
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 adjustment = -1;
-                item.quality = Math.max(item.quality + adjustment, QUALITY_DECREASE_THRESHOLD);
             }
+
+            if (adjustment > 0)
+                item.quality = Math.min(item.quality + adjustment, QUALITY_GROWTH_THRESHOLD);
+            else
+                item.quality = Math.max(item.quality + adjustment, QUALITY_DECREASE_THRESHOLD);
 
             if (!item.name.equals("Sulfuras, Hand of Ragnaros"))
                 item.sellIn = item.sellIn - 1;
