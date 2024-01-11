@@ -35,7 +35,8 @@ class GildedRose {
                 return 2;
             else
                 return 1;
-
+        else if (item.name.equals("Conjured Mana Cake"))
+            return isExpired(item) ? -4 : -2;
         else if (item.name.equals("Aged Brie"))
             return isExpired(item) ? 2 : 1;
         else
