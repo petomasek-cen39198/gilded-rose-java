@@ -13,18 +13,15 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.quality < QUALITY_GROWTH_THRESHOLD) {
+                int increment;
+                if (item.sellIn < 6)
+                    increment = 3;
+                else if (item.sellIn < 11)
+                    increment = 2;
+                else
+                    increment = 1;
 
-                    if (item.sellIn < 6)
-                        item.quality = Math.min(item.quality + 3, QUALITY_GROWTH_THRESHOLD);
-
-                    else if (item.sellIn < 11)
-                        item.quality = Math.min(item.quality + 2, QUALITY_GROWTH_THRESHOLD);
-
-                    else
-                        item.quality++;
-
-                }
+                item.quality = Math.min(item.quality + increment, QUALITY_GROWTH_THRESHOLD);
             } else if (item.name.equals("Aged Brie")) {
                 if (item.quality < QUALITY_GROWTH_THRESHOLD) {
                     item.quality++;
