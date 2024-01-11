@@ -26,23 +26,20 @@ class GildedRose {
     }
 
     private static int getAdjustment(Item item) {
-        int adjustment = 0;
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
             if (isExpired(item))
-                adjustment = -item.quality;
+                return -item.quality;
             else if (item.sellIn < 6)
-                adjustment = 3;
+                return 3;
             else if (item.sellIn < 11)
-                adjustment = 2;
+                return 2;
             else
-                adjustment = 1;
+                return 1;
 
-        } else if (item.name.equals("Aged Brie")) {
-            adjustment = isExpired(item) ? 2 : 1;
-        } else {
-            adjustment = isExpired(item) ? -2 : -1;
-        }
-        return adjustment;
+        else if (item.name.equals("Aged Brie"))
+            return isExpired(item) ? 2 : 1;
+        else
+            return isExpired(item) ? -2 : -1;
     }
 
     private static boolean isExpired(Item item) {
